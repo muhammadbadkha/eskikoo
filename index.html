@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Es Kiko</title>
+  <meta name="description" content="Kiko Enak Tau">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://eskiko.xyz" />
+  <meta property="og:title" content="Es Kiko 🖤🖤">
+  <meta property="og:description" content="Kiko Enak Tau">
+  <meta property="og:site_name" content="Es Kiko 🖤🖤">
+</head>
+<link rel="stylesheet" href="app.css?v=0.1">
+<style>
+
+</style>
+<body>
+  <div id="app">
+  <div class="animation-wrapper">
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
+  </div>
+  <div>
+    <h1>
+      <span id="typed"></span>
+    </h1>
+  </div>
+    <div style="text-align: center;margin-top:0rem;">
+      <form action="http://www.google.com/search" method="get">
+      <div class="bar">
+        <input class="searchbar" name="q" type="text" title="Search" placeholder="Search">
+      </div>
+      <div class="buttons">
+        <button class="btn btn-primary" id="btn-bimay" style="margin-right:1rem;" type="button" value="Google"
+        onclick="window.open('https://binusmaya.binus.ac.id/login/','_self');">Binusmaya</button>
+        <button class="btn btn-default" type="submit">Search</button>
+       </div>
+      </form>
+    </div>
+  </div>
+  <footer>
+    <div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+  <script>
+    let name = 'Cylia'
+    let theme = {
+      pagi: {
+        body: '#1a4565',//e3f2fd
+        text: '#fff'
+      },
+      sore: {
+        body: '#ca9c08',//ffd54f
+        text: '#37474f'
+      },
+      malam: {
+        body: '#212121',//212121
+        text: '#fff'//fff
+      },
+    }
+    let now = ''
+    const typed = new Typed('#typed', {
+      strings: [''],
+      typeSpeed: 110,
+      showCursor: false,
+      smartBackspace: true,
+      backSpeed: 200,
+      backDelay: 3000,
+      loop: true
+    })
+
+    function changeTheme() {
+      const word = 'Selamat ' + now.slice(0, 1).toUpperCase() + now.slice(1) + ' ' + decodeURIComponent(name)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
+      tmpNow = now == 'siang' ? 'pagi' : now
+      removeClassLink()
+      document.querySelectorAll('.link').forEach(el => {
+        el.classList.add('a-' + (tmpNow == 'siang' ? 'pagi' : tmpNow))
+      })
+      document.body.style.background = theme[tmpNow].body
+      document.querySelector('#app').style.color = theme[tmpNow].text
+      document.querySelector('footer').style.color = theme[tmpNow].text
+      document.querySelectorAll('.link').forEach(el => {
+        el.style.color = theme[tmpNow].text
+      })
+      typed.strings = [word]
+      document.title = word
+      typed.reset(1)
+    }
+
+    function tmpChangeTheme() {
+      now = now == 'pagi' || now == 'siang' ? 'sore' :
+             now == 'sore' ? 'malam' :
+             now == 'malam' ? 'pagi' : ''
+      changeTheme()
+    }
+
+    function removeClassLink() {
+      document.querySelectorAll('.link').forEach(el => {
+        const _ = el.classList
+        _.remove('a-pagi')
+        _.remove('a-sore')
+        _.remove('a-malam')
+      })
+    }
+
+    setInterval(() => {
+      const d = new Date()
+      const jam = d.getHours()
+      const oldNow = now
+    if (jam >= 3 && jam < 11) {
+        now = 'pagi'
+      }
+      else if (jam >= 11 && jam < 15) {
+        now = 'siang'
+      }
+      else if (jam >= 15 && jam < 19) {
+        now = 'sore'
+      }
+      else if ((jam >= 19 && jam <= 24) || jam < 3) {
+        now = 'malam'
+      }
+      oldNow != now ? changeTheme() : ''
+    }, 150)
+    console['\x6c\x6f\x67']('\x68\x74\x74\x70\x73\x3a\x2f\x2f\x6b\x61\x6c\x76\x69\x2e\x69\x64');
+  </script>
+</body>
+</html>
